@@ -1,22 +1,21 @@
 import React from 'react';
-import styled, {
-  // createGlobalStyle,
-  ThemeProvider }
-from 'styled-components'
+import { ThemeProvider } from 'styled-components';
 
 import GlobalFonts from './style/fonts';
+import GlobalStyle from './style/global';
 import theme from './style/theme';
+import Layout from './components/Layout';
+import { AppContextProvider } from './context';
 
-const Wrapper = styled.div`
-  color: ${props => props.theme.colors.primary};
-  font-family: San Serif Pro;
-`
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalFonts />
-      <Wrapper>Hello Friends and allies</Wrapper>
+      <AppContextProvider>
+        <GlobalFonts />
+        <GlobalStyle />
+        <Layout />
+      </AppContextProvider>
     </ThemeProvider>
   );
 }

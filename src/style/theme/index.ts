@@ -1,12 +1,12 @@
 import { DefaultTheme } from 'styled-components'
+import media from './media'
 
 const theme: DefaultTheme = {
-  borderRadius: '5px',
-
   colors: {
-    primary: 'cyan',
-    secondary: 'magenta',
+    primary: '#363C3C',
+    secondary: '#D6D8D8',
   },
+  media,
 }
 
 export default theme
