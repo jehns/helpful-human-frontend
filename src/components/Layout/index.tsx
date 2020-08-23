@@ -1,10 +1,17 @@
 import React, {useEffect} from 'react'
 import axios from 'axios'
-// import styled from 'styled-components'
+import styled from 'styled-components'
 
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 import { useAppContext } from '../../context'
+import Main from '../Main'
+
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 
 
 const Layout: React.FC<{}> = () => {
@@ -15,12 +22,15 @@ const Layout: React.FC<{}> = () => {
       dispatch({type: 'UPDATE_PAGES', payload: pageColors.data})
     }
     pageColors()
-  }, []);
+  }, [dispatch, currentPage]);
 
   return (
     <>
       <Header />
-      <Sidebar />
+      <Wrapper>
+        <Sidebar />
+        <Main />
+      </Wrapper>
     </>
   )
 }

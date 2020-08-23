@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import List from './List'
 
 const Wrapper = styled.div`
-  background-color: ${props => props.theme.colors.primary};
-  height: 100px;
-  border: 0;
+  width:100%;
+  margin: 80px 0 0 40px;
 `
 
 
 const Main: React.FC<{}> = () => {
   return (
-   <Wrapper>
-
-   </Wrapper>
+    <Wrapper>
+      <List />
+    </Wrapper>
   )
 }
 

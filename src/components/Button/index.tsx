@@ -7,6 +7,10 @@ const Button = styled.button`
   width: 260px;
   border-width: 1px;
   border-radius: 4px;
+  font-weight: bold;
+  font-size: 24px;
+  color: ${props => props.theme.colors.primary};
+  font-family: 'Source Serif Pro';
 `
 
 interface Props {

@@ -11,7 +11,7 @@ type ColorGroup = {
 
 type PageQuery = {
   count: number,
-  colorGroups: ColorGroup[],
+  colorGroup: ColorGroup[],
   rows: Color[]
 }
 
@@ -31,8 +31,9 @@ type State = {
 const reducer = (state: State, action: Actions) => {
   switch (action.type) {
     case 'UPDATE_PAGES':
+      console.log("REDUCER: ", action.payload)
       const totalPages = Math.ceil(action.payload.count / 12)
-      return {...state, totalPages: totalPages, pageColors: action.payload.rows, }
+      return {...state, totalPages: totalPages, pageColors: action.payload.rows, groupColors: action.payload.colorGroup}
     case 'UPDATE_VIEW':
       return {...state}
     default:
