@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import List from './List'
+import Router from '../../Router'
 
 const Wrapper = styled.div`
   width:100%;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const Main: React.FC<{}> = () => {
   return (
     <Wrapper>
-      <List />
+      <Router />
     </Wrapper>
   )
 }

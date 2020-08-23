@@ -18,6 +18,8 @@ type PageQuery = {
 type Actions =
   | {type: "UPDATE_PAGES", payload: PageQuery}
   | {type: "UPDATE_VIEW", payload: boolean}
+  | {type: "UPDATE_CURRENT_PAGE", payload: number}
+  | {type: "UPDATE_CURRENT_COLOR", payload: Color}
 
 
 type State = {
@@ -25,17 +27,22 @@ type State = {
   pageColors: Color[],
   totalPages: number,
   currentPage: number,
-  listView: boolean
+  currentColor: Color | null
 }
 
 const reducer = (state: State, action: Actions) => {
   switch (action.type) {
     case 'UPDATE_PAGES':
-      console.log("REDUCER: ", action.payload)
       const totalPages = Math.ceil(action.payload.count / 12)
       return {...state, totalPages: totalPages, pageColors: action.payload.rows, groupColors: action.payload.colorGroup}
     case 'UPDATE_VIEW':
       return {...state}
+    case 'UPDATE_CURRENT_PAGE':
+      return {...state, currentPage: action.payload}
+    case 'UPDATE_CURRENT_COLOR':
+      console.log("REDUCER: ", action.payload)
+
+      return {...state, currentColor: action.payload}
     default:
       return state
   }

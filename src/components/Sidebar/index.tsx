@@ -9,6 +9,9 @@ const Wrapper = styled.div`
   width: 320px;
   background-color: ${props => props.theme.colors.secondary};
   flex-shrink: 0;
+  margin-bottom: -5000px;
+  padding-bottom: 5000px;
+  overflow: hidden;
 `
 
 const TextWrapper = styled.div`

@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react'
-import axios from 'axios'
 import styled from 'styled-components'
 
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 import { useAppContext } from '../../context'
 import Main from '../Main'
-
+import { getSwatches } from '../../services/getSwatches'
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,11 +14,11 @@ const Wrapper = styled.div`
 
 
 const Layout: React.FC<{}> = () => {
-  const [{currentPage}, dispatch] = useAppContext()
+  const [{ currentPage }, dispatch] = useAppContext()
   useEffect(() => {
     const pageColors = async () => {
-      const pageColors = await axios.get(`${process.env.REACT_APP_BACKEND_API}/api/colors?page=${currentPage}&pageSize=12`)
-      dispatch({type: 'UPDATE_PAGES', payload: pageColors.data})
+      const pageColors = await getSwatches(currentPage)
+      dispatch({type: 'UPDATE_PAGES', payload: pageColors})
     }
     pageColors()
   }, [dispatch, currentPage]);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter as Router, } from "react-router-dom";
 
 import GlobalFonts from './style/fonts';
 import GlobalStyle from './style/global';
@@ -12,9 +13,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <AppContextProvider>
-        <GlobalFonts />
-        <GlobalStyle />
-        <Layout />
+        <Router>
+          <GlobalFonts />
+          <GlobalStyle />
+          <Layout />
+        </Router>
       </AppContextProvider>
     </ThemeProvider>
   );

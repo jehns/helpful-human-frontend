@@ -1,21 +1,23 @@
 import React from "react"
-import { Router, Route, Switch } from "react-router-dom"
-import history from './history'
+import { Route, Switch } from "react-router-dom"
+import List from '../components/Main/List'
+import SingleColor from '../components/Main/SingleColor'
+
 
 const AppRouter: React.FC = () => {
-
   return (
-    <Router history={history}>
-      <Switch>
+    <Switch>
 
-        <Route path="/">
-          <div/>
-        </Route>
+      <Route path="/color">
+        <SingleColor />
+      </Route>
 
-      </Switch>
-    </Router>
+      <Route path="/">
+        <List />
+      </Route>
+
+    </Switch>
   )
-
 }
 
 export default AppRouter

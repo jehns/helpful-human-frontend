@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from "react-router-dom"
+
 import Logo from '../../images/logo.svg'
 import Spacer from '../../utils/Spacer'
 
@@ -17,7 +19,9 @@ const Header: React.FC<{}> = () => {
   return (
    <Wrapper>
      <Spacer direction="width" value={30} />
-     <img src={Logo} alt="logo"/>
+     <Link to="/">
+      <img src={Logo} alt="logo"/>
+     </Link>
    </Wrapper>
   )
 }
