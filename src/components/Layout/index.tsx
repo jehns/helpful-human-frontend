@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   flex-direction: row;
 `
 
-
 const Layout: React.FC<{}> = () => {
   const [{ currentPage }, dispatch] = useAppContext()
   useEffect(() => {

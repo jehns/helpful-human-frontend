@@ -1,8 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from "react-router-dom"
+
 import Spacer from '../../utils/Spacer'
 import Button from '../Button'
 import ColorGroupList from './ColorGroupList'
+import { getRandomColor } from '../../services/getRandomColor'
+import { useAppContext } from '../../context'
 
 
 const Wrapper = styled.div`
@@ -23,11 +27,19 @@ const TextWrapper = styled.div`
 
 
 const Sidebar: React.FC<{}> = () => {
+  const [, dispatch] = useAppContext()
+
+  const handleClick = async () => {
+    const randomColor =  await getRandomColor()
+    dispatch({type: 'UPDATE_CURRENT_COLOR', payload: randomColor})
+  }
   return (
    <Wrapper>
      <Spacer value={80} />
       <TextWrapper>
-        <Button text="Random Color"/>
+        <Link to='/random'>
+          <Button text="Random Color" handleClick={handleClick} />
+        </Link>
       </TextWrapper>
       <Spacer value={37} />
       <ColorGroupList />

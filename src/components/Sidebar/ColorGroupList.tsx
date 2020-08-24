@@ -1,6 +1,9 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 import styled from 'styled-components'
+
 import { useAppContext } from '../../context'
+import { getGroupSwatches } from '../../services/getGroupSwatches'
 
 
 const Wrapper = styled.div`
@@ -20,14 +23,20 @@ interface Color {
 }
 
 const ColorGroupList: React.FC = () => {
-  const [state,] = useAppContext()
+  const [{ groupColors }, dispatch] = useAppContext()
+  const handleColorClick = async (color: Color) => {
+    const colors = await getGroupSwatches(color.id)
+    dispatch({type: 'UPDATE_SIMILAR_COLORS', payload: colors})
+  }
   return (
    <Wrapper>
-     {state.groupColors.map((color: Color) => {
+     {groupColors.map((color: Color) => {
        return (
-        <ColorWrapper key={color.id}>
-          {color.name}
-        </ColorWrapper>
+         <Link to="/group-color" key={color.id} style={{textDecoration: 'none', color: "#363C3C"}}>
+          <ColorWrapper onClick={() => handleColorClick(color)}>
+            {color.name}
+          </ColorWrapper>
+         </Link>
        )
      })}
    </Wrapper>

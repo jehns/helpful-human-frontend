@@ -4,16 +4,21 @@ import { Link } from "react-router-dom"
 
 import { useAppContext } from '../../context'
 import Footer from '../Footer'
+import { getGroupSwatches } from '../../services/getGroupSwatches'
 
 
 interface Color {
   id: string,
   hex: string,
-  colorGroupId: number,
+  colorGroupId: string,
 }
 
 interface ColorProps {
   hex: string
+}
+
+interface Props {
+  group: boolean
 }
 
 const Wrapper = styled.div`
@@ -25,7 +30,7 @@ const Wrapper = styled.div`
 const SwatchWrapper = styled.div`
   height: 261px;
   width: 220px;
-  border-radius: 6px;
+  border-radius: 9px;
   box-shadow: 0px 0px 5px 1px rgba(219,219,219,1);
   border: '1px solid #dbdbdb';
   cursor: pointer;
@@ -36,8 +41,8 @@ const ColorContainer = styled.div`
   max-width: 218px;
   margin: auto;
   margin-top: 1px;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  border-top-right-radius: 9px;
+  border-top-left-radius: 9px;
   ${(props: ColorProps) => `background-color: ${props.hex};`}
 `
 
@@ -52,18 +57,21 @@ const TextContainer = styled.div`
   padding-bottom: 1px;
 `
 
-const MainList: React.FC<{}> = () => {
-  const [{ pageColors }, dispatch] = useAppContext()
-  const handleSwatchClick = (color: Color) => {
+const MainList: React.FC<Props> = ({group}) => {
+  const [{ pageColors, similarColors }, dispatch] = useAppContext()
+  const handleSwatchClick = async (color: Color) => {
+    const similarColors = await getGroupSwatches(color.colorGroupId)
     dispatch({type: 'UPDATE_CURRENT_COLOR', payload: color})
+    dispatch({type: 'UPDATE_SIMILAR_COLORS', payload: similarColors})
   }
+  const renderColors = group ? similarColors : pageColors
   return (
     <>
       <Wrapper>
-          {pageColors.map((color: Color) => {
+          {renderColors.map((color: Color) => {
           return (
             <SwatchWrapper key={color.id}>
-              <Link to="/color" style={{textDecoration: 'none'}} onClick={() => handleSwatchClick(color)}>
+              <Link to={`/colors/${color.hex.slice(1)}`} style={{textDecoration: 'none'}} onClick={() => handleSwatchClick(color)}>
                 <ColorContainer hex={color.hex}/>
                 <TextContainer>
                   {color.hex}

@@ -1,7 +1,7 @@
 type Color = {
   id: string,
   hex: string,
-  colorGroupId: number,
+  colorGroupId: string,
 }
 
 type ColorGroup = {
@@ -20,17 +20,19 @@ type Actions =
   | {type: "UPDATE_VIEW", payload: boolean}
   | {type: "UPDATE_CURRENT_PAGE", payload: number}
   | {type: "UPDATE_CURRENT_COLOR", payload: Color}
-
+  | {type: "UPDATE_SIMILAR_COLORS", payload: Color[]}
 
 type State = {
   groupColors: ColorGroup[],
   pageColors: Color[],
   totalPages: number,
   currentPage: number,
-  currentColor: Color | null
+  currentColor: Color | null,
+  similarColors: Color[]
 }
 
 const reducer = (state: State, action: Actions) => {
+  // console.log("REDUCER: ", action.payload)
   switch (action.type) {
     case 'UPDATE_PAGES':
       const totalPages = Math.ceil(action.payload.count / 12)
@@ -40,9 +42,9 @@ const reducer = (state: State, action: Actions) => {
     case 'UPDATE_CURRENT_PAGE':
       return {...state, currentPage: action.payload}
     case 'UPDATE_CURRENT_COLOR':
-      console.log("REDUCER: ", action.payload)
-
       return {...state, currentColor: action.payload}
+    case 'UPDATE_SIMILAR_COLORS':
+      return {...state, similarColors: action.payload}
     default:
       return state
   }

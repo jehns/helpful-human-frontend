@@ -8,12 +8,20 @@ const AppRouter: React.FC = () => {
   return (
     <Switch>
 
-      <Route path="/color">
+      <Route path="/colors/:hex">
         <SingleColor />
       </Route>
 
+      <Route path="/random">
+        <SingleColor />
+      </Route>
+
+      <Route path="/group-color">
+        <List group={true}/>
+      </Route>
+
       <Route path="/">
-        <List />
+        <List group={false}/>
       </Route>
 
     </Switch>

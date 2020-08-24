@@ -5,9 +5,12 @@ import { Link } from "react-router-dom"
 import Logo from '../../images/logo.svg'
 import Spacer from '../../utils/Spacer'
 
+
 const Wrapper = styled.div`
   background-color: ${props => props.theme.colors.primary};
   height: 100px;
+  min-width: 1440px;
+  overflow: hidden;
   border: 0;
   display: flex;
   align-items: center;
