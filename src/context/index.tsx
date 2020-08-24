@@ -7,7 +7,6 @@ import initialState from './reducer/initialState'
 const StateContext = React.createContext<any>({});
 const DispatchContext = React.createContext<any>({});
 
-
 const AppContextProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 

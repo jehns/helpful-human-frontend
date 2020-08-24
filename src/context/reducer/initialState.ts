@@ -4,7 +4,7 @@ const initialState = {
   pageColors: [],
   totalPages: 0,
   currentPage: 0,
-  currentColor: {id: '104', hex: '#FFA07A', colorGroupId: '2'},
+  currentColor: null,
   similarColors: []
 }
 

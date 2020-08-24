@@ -13,6 +13,9 @@ const Button = styled.button`
   font-family: 'Source Serif Pro';
   background-color: #ffffff;
   cursor: pointer;
+  &:focus {
+    outline:0;
+  }
 `
 
 interface Props {
@@ -23,9 +26,9 @@ interface Props {
 const MainButton: React.FC<Props> = ({ text, handleClick }) => {
   return (
     <>
-    <Button onClick={handleClick}>
-        {text}
-    </Button>
+      <Button onClick={handleClick}>
+          {text}
+      </Button>
    </>
   )
 }

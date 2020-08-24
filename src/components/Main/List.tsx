@@ -57,7 +57,7 @@ const TextContainer = styled.div`
   padding-bottom: 1px;
 `
 
-const MainList: React.FC<Props> = ({group}) => {
+const MainList: React.FC<Props> = ({ group }) => {
   const [{ pageColors, similarColors }, dispatch] = useAppContext()
   const handleSwatchClick = async (color: Color) => {
     const similarColors = await getGroupSwatches(color.colorGroupId)

@@ -32,7 +32,6 @@ type State = {
 }
 
 const reducer = (state: State, action: Actions) => {
-  // console.log("REDUCER: ", action.payload)
   switch (action.type) {
     case 'UPDATE_PAGES':
       const totalPages = Math.ceil(action.payload.count / 12)

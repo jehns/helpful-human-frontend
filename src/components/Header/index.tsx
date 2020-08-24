@@ -3,28 +3,28 @@ import styled from 'styled-components'
 import { Link } from "react-router-dom"
 
 import Logo from '../../images/logo.svg'
-import Spacer from '../../utils/Spacer'
-
+import Input from '../Input'
 
 const Wrapper = styled.div`
   background-color: ${props => props.theme.colors.primary};
   height: 100px;
-  min-width: 1440px;
+  /* min-width: 1440px; */
   overflow: hidden;
   border: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  padding: 0 35px;
 `
 
 
 const Header: React.FC<{}> = () => {
   return (
    <Wrapper>
-     <Spacer direction="width" value={30} />
      <Link to="/">
       <img src={Logo} alt="logo"/>
      </Link>
+     <Input placeholderText="Search" />
    </Wrapper>
   )
 }

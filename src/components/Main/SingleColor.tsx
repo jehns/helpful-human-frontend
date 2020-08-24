@@ -48,6 +48,7 @@ const SimilarColorsWrapper = styled.div`
   grid-gap: 40px;
   grid-template-columns: 175px 175px 175px 175px 175px;
 `
+
 const FlexContainer = styled.div`
   display: flex;
   align-items: center;
@@ -86,7 +87,6 @@ const SingleColor: React.FC = () => {
       </FlexContainer>
 
       <Spacer value={38} />
-
     </>
     )
   }
