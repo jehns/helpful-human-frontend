@@ -56,38 +56,41 @@ const FlexContainer = styled.div`
 `
 
 const SingleColor: React.FC = () => {
-  const [{ currentColor, similarColors }, ] = useAppContext()
+  const [{ currentColor, similarColors }, dispatch] = useAppContext()
   const previewColors = similarColors.slice(0, 5)
+  const handleClick = () => {
+    dispatch({type: 'UPDATE_CURRENT_COLOR', payload: null})
+  }
   if (currentColor) {
     return (
-    <>
-      <SwatchWrapper key={currentColor.id}>
-        <ColorContainer hex={currentColor.hex} />
-        <TextContainer>
-          {currentColor.hex}
-        </TextContainer>
-      </SwatchWrapper>
+      <>
+        <SwatchWrapper key={currentColor.id}>
+          <ColorContainer hex={currentColor.hex} />
+          <TextContainer>
+            {currentColor.hex}
+          </TextContainer>
+        </SwatchWrapper>
 
-      <Spacer value={30} />
+        <Spacer value={30} />
 
-      <SimilarColorsWrapper>
-      {previewColors.map((color: Color) => {
-        return (
-            <SimilarColor color={color} key={color.id}/>
-        )
-      })}
-      </SimilarColorsWrapper>
+        <SimilarColorsWrapper>
+        {previewColors.map((color: Color) => {
+          return (
+              <SimilarColor color={color} key={color.id}/>
+          )
+        })}
+        </SimilarColorsWrapper>
 
-      <Spacer value={40} />
+        <Spacer value={40} />
 
-      <FlexContainer>
-        <Link to="/">
-          <Button text="Clear" handleClick={() => null}/>
-        </Link>
-      </FlexContainer>
+        <FlexContainer>
+          <Link to="/">
+            <Button text="Clear" handleClick={handleClick}/>
+          </Link>
+        </FlexContainer>
 
-      <Spacer value={38} />
-    </>
+        <Spacer value={38} />
+      </>
     )
   }
   return <div />

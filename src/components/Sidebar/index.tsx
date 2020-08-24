@@ -29,8 +29,9 @@ const TextWrapper = styled.div`
 const Sidebar: React.FC<{}> = () => {
   const [, dispatch] = useAppContext()
   const handleClick = async () => {
-    const randomColor =  await getRandomColor()
-    dispatch({type: 'UPDATE_CURRENT_COLOR', payload: randomColor})
+    const data = await getRandomColor()
+    dispatch({type: 'UPDATE_CURRENT_COLOR', payload: data.randomColor})
+    dispatch({type: 'UPDATE_SIMILAR_COLORS', payload: data.similarColors})
   }
   return (
    <Wrapper>

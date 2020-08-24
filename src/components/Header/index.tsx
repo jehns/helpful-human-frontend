@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 
 import Logo from '../../images/logo.svg'
 import Input from '../Input'
+import { useAppContext } from '../../context'
+
 
 const Wrapper = styled.div`
   background-color: ${props => props.theme.colors.primary};
@@ -19,9 +21,13 @@ const Wrapper = styled.div`
 
 
 const Header: React.FC<{}> = () => {
+  const [, dispatch] = useAppContext()
+  const handleClick = () => {
+    dispatch({type: 'UPDATE_CURRENT_COLOR', payload: null})
+  }
   return (
    <Wrapper>
-     <Link to="/">
+     <Link to="/" onClick={handleClick}>
       <img src={Logo} alt="logo"/>
      </Link>
      <Input placeholderText="Search" />
